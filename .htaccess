@@ -1,0 +1,164 @@
+<FilesMatch ".(flv|gif|jpg|jpeg|png|ico|swf|js|css|pdf)$">
+Header set Cache-Control "max-age=2592000" 
+</FilesMatch>
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType application/javascript "access plus 7 days"
+ExpiresByType text/javascript "access plus 7 days"
+ExpiresByType text/css "access plus 7 days"
+ExpiresByType image/gif "access plus 7 days"
+ExpiresByType image/jpeg "access plus 7 days"
+ExpiresByType image/png "access plus 7 days" 
+</IfModule>
+    adddefaultcharset utf8
+
+    errordocument 404 /
+
+    php_value register_globals on
+
+    RewriteEngine On
+
+    RewriteRule ^clan/gerb/?$ gerb.php [L,QSA]
+
+    RewriteRule ^save/?$ save.php [L,QSA]
+
+    RewriteRule ^ban/?$ ban.php [L,QSA]
+
+
+RewriteRule ^settings/?$ settings.php [L,QSA]
+RewriteRule ^settings/login/?$ settings.php?action=login [L,QSA]
+RewriteRule ^settings/password/?$ settings.php?action=password [L,QSA]
+RewriteRule ^settings/race/?$ settings.php?action=race [L,QSA]
+RewriteRule ^settings/sex/?$ settings.php?action=sex [L,QSA]
+
+# ОНЛАЙН
+RewriteRule ^online/?$ online.php [L,QSA]
+RewriteRule ^online/search/?$ online.php?action=search [L,QSA]
+# ФОРУМ
+RewriteRule ^forum/?$ forum.php [L,QSA]
+RewriteRule ^forum/sub/([0-9]*)/?$ forum.php?sub=$1 [L,QSA]
+RewriteRule ^forum/topic/([0-9]*)/?$ forum.php?topic=$1 [L,QSA]
+
+    RewriteRule ^chat/?$ chat.php [L,QSA]
+    RewriteRule ^chat/clan/?$ chat.php?clan=true [L,QSA]
+
+    RewriteRule ^cave/?$ cave.php [L,QSA]
+
+
+# МОДЕРАТОРЫ
+RewriteRule ^moderators/?$ moderators.php [L,QSA]
+# ПОЛЬЗОВАТЕЛЬ
+RewriteRule ^user/?$ user.php [L,QSA]
+RewriteRule ^user/([0-9]*)/?$ user.php?id=$1 [L,QSA]
+# СНАРЯЖЕНИЕ
+RewriteRule ^equip/([0-9]*)/?$ equip.php?id=$1 [L,QSA]
+# УМЕНИЯ
+RewriteRule ^ability/([0-9]*)/?$ ability.php?id=$1 [L,QSA]
+RewriteRule ^ability/([0-9]*)/([0-9]*)/?$ ability.php?id=$1&ability=$2 [L,QSA]
+
+
+                   RewriteRule ^inv/bag/?$            inv.php?place=0 [L,QSA]
+                 RewriteRule ^inv/chest/?$            inv.php?place=1 [L,QSA]
+         RewriteRule ^inv/wear/([0-9]*)/?$            inv.php?wear=$1 [L,QSA]
+RewriteRule ^inv/move/([0-9]*)/([0-9]*)/?$ inv.php?place=$1&unwear=$2 [L,QSA]
+
+# РЕСУРСЫ
+RewriteRule ^sack/?$ sack.php [L,QSA]
+# ВЕЩИ  
+RewriteRule ^item/([0-9]*)/?$ item.php?id=$1 [L,QSA]
+# ПОЧТА
+RewriteRule ^mail/?$ mail.php [L,QSA]
+RewriteRule ^mail/([0-9]*)/?$ mail.php?id=$1 [L,QSA]
+# ТРЕНЕРОВКА
+RewriteRule ^train/?$ train.php [L,QSA]
+
+
+
+                                      RewriteRule ^clan/?$ clan.php [L,QSA]
+                       RewriteRule ^clan/([0-9]*)/?$ clan.php?id=$1 [L,QSA]
+    RewriteRule ^clan/memb/([0-9]*)/?$ clan.php?action=memb&memb=$1 [L,QSA]
+    RewriteRule ^clan/money/?$ clan.php?action=money [L,QSA]
+
+    RewriteRule ^clan/built/?$ clan.php?action=built [L,QSA]
+
+
+# КЛАНЫ
+RewriteRule ^clans/?$ clans.php [L,QSA]
+RewriteRule ^clans/create/?$ clans.php?action=create [L,QSA]
+# АРЕНА
+RewriteRule ^arena/?$ arena.php [L,QSA]
+# ДУЭЛИ
+RewriteRule ^duel/?$ duel.php [L,QSA]
+# КОЛИЗЕЙ
+RewriteRule ^coliseum/?$ coliseum.php [L,QSA]
+
+
+
+    RewriteRule ^trade/?$ trade.php [L,QSA]
+    
+    RewriteRule ^trade/exchange/?$ trade.php?action=exchange [L,QSA]
+    RewriteRule ^trade/exchange/([0-9]*)/?$ trade.php?action=exchange&g=$1 [L,QSA]
+
+    RewriteRule ^trade/webmoney/?$ trade.php?action=webmoney [L,QSA]
+
+    RewriteRule ^trade/sms/?$ trade.php?action=sms [L,QSA]
+
+
+
+    RewriteRule ^shop/?$ shop.php [L,QSA]
+    
+    RewriteRule ^shop/([0-9]*)/?$ shop.php?quality=$1 [L,QSA]
+    RewriteRule ^complect/([0-9]*)/?$ complect.php?id=$1 [L,QSA]
+    RewriteRule ^itemshop/([0-9]*)/?$ itemshop.php?id=$1 [L,QSA]
+
+
+    RewriteRule ^farm/?$ farm.php [L,QSA]
+# ЗАЛ СЛАВЫ
+RewriteRule ^rating/?$ rating.php [L,QSA]
+RewriteRule ^rating/coliseum/?$ rating.php?sort=coliseum [L,QSA]
+RewriteRule ^rating/duel/?$ rating.php?sort=duel [L,QSA]
+# МАНЕКЕН
+RewriteRule ^manekenImage/([0-9]*)/([0-9]*)/([0-9]*)/([0-9]*)/([0-9]*)/([0-9]*)/([0-9]*)/([0-9]*)/([0-9]*)/([0-9]*)/?$ manekenImage.php?g=$1&w_1=$2&w_2=$3&w_3=$4&w_4=$5&w_5=$6&w_6=$7&w_7=$8&w_8=$9&t=$10 [L,QSA]
+
+    RewriteRule ^smith/?$ smith.php [L,QSA]
+    RewriteRule ^smith/runes/?$ smith.php?action=runes [L,QSA]
+    RewriteRule ^smith/runes/([0-9]*)/?$ smith.php?action=runes&id=$1 [L,QSA]
+    RewriteRule ^smith/runes/([0-9]*)/([0-9]*)/?$ smith.php?action=runes&id=$1&rune=$2 [L,QSA]
+    
+    RewriteRule ^smith/bonus/?$ smith.php?action=bonus [L,QSA]
+    RewriteRule ^smith/bonus/([0-9]*)/?$ smith.php?action=bonus&id=$1 [L,QSA]
+
+    RewriteRule ^smith/smith/?$ smith.php?action=smith [L,QSA]
+    RewriteRule ^smith/smith/([0-9]*)/?$ smith.php?action=smith&id=$1 [L,QSA]
+
+# ДОЛИНА БЕССМЕРТНЫХ
+RewriteRule ^undying/?$ undying.php [L,QSA]
+# СРАЖЕНИЯ
+RewriteRule ^fights/?$ fights.php [L,QSA]
+# РЕФЕРАЛЬНАЯ СИСТЕМА
+RewriteRule ^([0-9]*)/?$ index.php?ref=$1 [L,QSA]
+# БЫСТРАЫЙ СТАРТ
+RewriteRule ^start/?$ start.php [L,QSA]
+RewriteRule ^start/([0-9]*)/?$ start.php?ref=$1 [L,QSA]
+
+
+    RewriteRule ^common/?$ common.php [L,QSA]
+    RewriteRule ^common/pravila-2/?$ common.php?action=pravila-2 [L,QSA]
+    RewriteRule ^common/pravila/?$ common.php?action=pravila [L,QSA]
+    RewriteRule ^common/refferal/?$ common.php?action=refferal [L,QSA]
+    RewriteRule ^lab/?$ lab.php [L,QSA]
+    RewriteRule ^lab/wiz/?$ lab.php?action=wiz [L,QSA]
+
+    RewriteRule ^adm/?$ adm.php [L,QSA]
+    RewriteRule ^adm/ban/?$ adm.php?action=ban [L,QSA]
+    RewriteRule ^adm/ban/list/?$ adm.php?action=ban&list=true [L,QSA]
+    
+    RewriteRule ^adm/clon/?$ adm.php?action=clon [L,QSA]
+    RewriteRule ^adm/deposit/?$ adm.php?action=deposit [L,QSA]
+    RewriteRule ^adm/trade/?$ adm.php?action=trade [L,QSA]
+	RewriteRule ^adm/acc/?$ adm.php?action=acc [L,QSA]
+	RewriteRule ^adm/acc/yes/([0-9]*)/?$ adm.php?action=acc&yes=$1 [L,QSA]
+
+
+    RewriteRule ^lab/premium/?$ lab.php?action=premium [L,QSA]
+   RewriteRule ^smiles/?$ smiles.php [L,QSA]
